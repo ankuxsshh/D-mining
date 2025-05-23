@@ -7,8 +7,5 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('services/', views.services, name='services'),
     path('courses/', views.courses, name='courses'),
-    # path('python/', views.python, name='python'),
-    # path('dataanalysis/', views.dataanalysis, name='dataanalysis'),
-    # path('datascience/', views.datascience, name='datascience'),
-    # path('powerbi/', views.powerbi, name='powerbi'),
+    path('gallery/', views.gallery, name='gallery'),
 ]

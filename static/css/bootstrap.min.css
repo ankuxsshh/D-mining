@@ -19,7 +19,7 @@
     --bs-gray: #6c757d;
     --bs-gray-dark: #343a40;
     --bs-primary: #1842b6;
-    --bs-secondary: #26d48c;
+    --bs-secondary: #f08820;
     --bs-success: #198754;
     --bs-info: #0dcaf0;
     --bs-warning: #ffc107;
@@ -510,7 +510,7 @@ progress {
 
 @media(min-width: 1200px) {
     .display-2 {
-        font-size: 4.5rem
+        font-size: 2.5rem
     }
 }
 
@@ -8350,11 +8350,11 @@ fieldset:disabled .btn {
 }
 
 .text-primary {
-    color: #1842b6 !important
+    color: #000080 !important
 }
 
 .text-secondary {
-    color: #26d48c !important
+    color: white !important
 }
 
 .text-success {
@@ -8398,7 +8398,7 @@ fieldset:disabled .btn {
 }
 
 .text-white-50 {
-    color: rgba(255, 255, 255, .5) !important
+    color: white !important
 }
 
 .text-reset {
@@ -8406,11 +8406,11 @@ fieldset:disabled .btn {
 }
 
 .bg-primary {
-    background-color: #1842b6 !important
+    background-color: white !important
 }
 
 .bg-secondary {
-    background-color: #26d48c !important
+    background-color: #f08820 !important
 }
 
 .bg-success {
@@ -8434,7 +8434,7 @@ fieldset:disabled .btn {
 }
 
 .bg-dark {
-    background-color: #000103 !important
+    background-color: #f08820 !important
 }
 
 .bg-body {

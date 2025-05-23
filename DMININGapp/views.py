@@ -15,17 +15,7 @@ def services(request):
 def courses(request):
     return render(request, 'courses.html')
 
-# def python(request):
-#     return render(request, 'python.html')
-
-# def dataanalysis(request):
-#     return render(request, 'dataanalysis.html')
-
-# def datascience(request):
-#     return render(request, 'datascience.html')
-
-# def powerbi(request):
-#     return render(request, 'powerbi.html')
-
+def gallery(request):
+    return render(request, 'gallery.html')
 
 
