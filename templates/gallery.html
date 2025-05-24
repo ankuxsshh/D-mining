@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
-  Courses | D-Mining
+  Gallery | D-Mining
 {% endblock %}
 {% block content %}
   <!-- Page Header Start -->
@@ -21,42 +22,63 @@
 
   <!-- Gallery -->
   <div class="container-xxl gallery py-5">
-    <div class="row">
-      <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp" class="w-100 shadow-1-strong mb-4" alt="Boat on Calm Water" />
-
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp" class="w-100 shadow-1-strong mb-4" alt="Wintry Mountain Landscape" />
+    <div class="row g-4">
+      <!-- First Row -->
+      <div class="col-lg-4 col-md-6">
+        <div class="ratio ratio-16x9">
+          <img src="{% static 'img/1.jpeg' %}" class="img-fluid h-100 w-100 object-fit-cover shadow" alt="AI Concept">
+        </div>
+        <div class="ratio ratio-16x9 mt-4">
+          <img src="{% static 'img/2.jpeg' %}" class="img-fluid h-100 w-100 object-fit-cover shadow" alt="Data Analysis">
+        </div>
       </div>
 
-      <div class="col-lg-4 mb-4 mb-lg-0">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp" class="w-100 shadow-1-strong mb-4" alt="Mountains in the Clouds" />
-
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp" class="w-100 shadow-1-strong mb-4" alt="Boat on Calm Water" />
+      <div class="col-lg-4 col-md-6">
+        <div class="ratio ratio-16x9">
+          <img src="{% static 'img/3.jpeg' %}" class="img-fluid h-100 w-100 object-fit-cover shadow" alt="Machine Learning">
+        </div>
+        <div class="ratio ratio-16x9 mt-4">
+          <img src="{% static 'img/4.jpeg' %}" class="img-fluid h-100 w-100 object-fit-cover shadow" alt="Python Programming">
+        </div>
       </div>
 
-      <div class="col-lg-4 mb-4 mb-lg-0">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(18).webp" class="w-100 shadow-1-strong mb-4" alt="Waves at Sea" />
-
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain3.webp" class="w-100 shadow-1-strong mb-4" alt="Yosemite National Park" />
+      <div class="col-lg-4 col-md-6">
+        <div class="ratio ratio-16x9">
+          <img src="{% static 'img/7.jpeg' %}" class="img-fluid h-100 w-100 object-fit-cover shadow" alt="Data Mining">
+        </div>
+        <div class="ratio ratio-16x9 mt-4">
+          <img src="{% static 'img/6.jpeg' %}" class="img-fluid h-100 w-100 object-fit-cover shadow" alt="Neural Networks">
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp" class="w-100 shadow-1-strong mb-4" alt="Boat on Calm Water" />
 
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp" class="w-100 shadow-1-strong mb-4" alt="Wintry Mountain Landscape" />
+    <!-- Second Row -->
+    <div class="row g-4 mt-2">
+      <div class="col-lg-4 col-md-6">
+        <div class="ratio ratio-16x9">
+          <img src="{% static 'img/7.jpeg' %}" class="img-fluid h-100 w-100 object-fit-cover shadow" alt="Big Data">
+        </div>
+        <div class="ratio ratio-16x9 mt-4">
+          <img src="{% static 'img/8.jpeg' %}" class="img-fluid h-100 w-100 object-fit-cover shadow" alt="Data Visualization">
+        </div>
       </div>
 
-      <div class="col-lg-4 mb-4 mb-lg-0">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp" class="w-100 shadow-1-strong mb-4" alt="Mountains in the Clouds" />
-
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp" class="w-100 shadow-1-strong mb-4" alt="Boat on Calm Water" />
+      <div class="col-lg-4 col-md-6">
+        <div class="ratio ratio-16x9">
+          <img src="{% static 'img/9.jpeg' %}" class="img-fluid h-100 w-100 object-fit-cover shadow" alt="Deep Learning">
+        </div>
+        <div class="ratio ratio-16x9 mt-4">
+          <img src="{% static 'img/10.jpeg' %}" class="img-fluid h-100 w-100 object-fit-cover shadow" alt="Algorithms">
+        </div>
       </div>
 
-      <div class="col-lg-4 mb-4 mb-lg-0">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(18).webp" class="w-100 shadow-1-strong mb-4" alt="Waves at Sea" />
-
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain3.webp" class="w-100 shadow-1-strong mb-4" alt="Yosemite National Park" />
+      <div class="col-lg-4 col-md-6">
+        <div class="ratio ratio-16x9">
+          <img src="{% static 'img/11.jpeg' %}" class="img-fluid h-100 w-100 object-fit-cover shadow" alt="Statistics">
+        </div>
+        <div class="ratio ratio-16x9 mt-4">
+          <img src="{% static 'img/7.jpeg' %}" class="img-fluid h-100 w-100 object-fit-cover shadow" alt="Coding">
+        </div>
       </div>
     </div>
   </div>

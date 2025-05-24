@@ -718,13 +718,14 @@ html {
 /* WHATSAPP, CALL BUTTONS */
 .fixed-buttons {
     position: fixed;
-    bottom: 8px;
-    right: 11px;
+    bottom: 10px;
+    right: 20px;
     z-index: 2000;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 }
+
 
 .btn-whatsapp-pulse {
     color: white;
@@ -732,8 +733,8 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
     text-decoration: none;
     border-radius: 50%;
     position: relative;
