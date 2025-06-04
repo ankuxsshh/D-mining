@@ -1,231 +1,112 @@
 {% extends 'base.html' %}
 {% block title %}
-  Courses | D-Mining
+Courses | D-Mining
 {% endblock %}
 {% block content %}
-  <!-- Page Header Start -->
-  <div class="container-fluid page-header py-5">
-    <div class="container text-center py-5">
-      <h1 class="display-2 text-white mb-4 animated slideInDown">Courses</h1>
-      <nav aria-label="breadcrumb animated slideInDown">
-        <ol class="breadcrumb justify-content-center mb-0">
-          <li class="breadcrumb-item">
-            <a href="#">Home</a>
-          </li>
-          <li class="breadcrumb-item active" aria-current="page">Courses</li>
-        </ol>
-      </nav>
-    </div>
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5">
+  <div class="container text-center py-5">
+    <h1 class="display-2 text-white mb-4 animated slideInDown">Courses</h1>
+    <nav aria-label="breadcrumb animated slideInDown">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item">
+          <a href="#">Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Courses</li>
+      </ol>
+    </nav>
   </div>
-  <!-- Page Header End -->
+</div>
+<!-- Page Header End -->
 
-  <!-- Courses Styled Like Services Start -->
-  <div class="container-fluid services py-5 mb-5">
-    <div class="container">
-      <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
-        <h5 class="text-primary">Our Courses</h5>
-        <h1>Explore Our Courses</h1>
-        <p class="mt-3">Class duration 2 hours | Monday to Saturday</p>
-      </div>
-      <div class="row g-5 services-inner">
-        <!-- Python Programming -->
-        <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay=".3s">
-          <div class="services-item bg-light h-100" data-bs-toggle="modal" data-bs-target="#modalPython">
-            <div class="p-4 text-center services-content">
-              <div class="services-content-icon">
-                <img src="https://sourcebae.com/blog/wp-content/uploads/2023/09/Top-youTube-channels-on-python-programming.jpg" alt="Python Programming" class="img-fluid mb-4 rounded" style="height: 140px; object-fit: cover;" />
-                <h4 class="mb-2">Python Programming</h4>
-                <p class="text mb-2">₹12,000 | 2 months</p>
-                <p>Learn Python from scratch—ideal for beginners.</p>
-              </div>
+<!-- templates/courses.html -->
+<div class="container-fluid services py-5 mb-5">
+  <div class="container">
+    <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
+      <h5 class="text-primary">Our Courses</h5>
+      <h1>Explore Our Courses</h1>
+    </div>
+    <div class="row g-5 services-inner">
+      {% for course in courses %}
+      <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="{{ course.delay }}">
+        <div class="course-card bg-white h-100 shadow-sm rounded" data-bs-toggle="modal"
+          data-bs-target="{{ course.modal_target }}" style="cursor: pointer;">
+          <div class="position-relative">
+            <img src="{{ course.iimage.url }}" alt="{{ course.title }}" class="card-img-top"
+              style="width: 100%; height: 180px; object-fit: cover; border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem;" />
+            <div class="price-badge position-absolute" style="
+              top: 10px;
+              right: 10px;
+              background: #0B2243;
+              color: #fff;
+              padding: 0.5rem 1rem;
+              border-radius: 0.25rem;
+              font-weight: 500;
+              font-size: 0.9rem;">
+              ₹ {{ course.price }}
             </div>
           </div>
+          <div class="course-category bg-success text-white px-3 py-2">
+            <span>{{ course.category }}</span>
+          </div>
+          <div class="card-body text-center px-3">
+            <h5 class="card-title mb-3">{{ course.title }}</h5>
+            <div class="star-rating mb-3">
+              {% for i in "12345"|slice:":course.rating"|make_list %}
+              <i class="fas fa-star text-warning"></i>
+              {% endfor %}
+            </div>
+            <p class="text-muted small mb-4">
+              {{ course.short_description }}
+            </p>
+            <button class="btn btn-success btn-block">Enroll now</button>
+          </div>
         </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
 
-        <!-- Power BI -->
-        <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay=".5s">
-          <div class="services-item bg-light h-100" data-bs-toggle="modal" data-bs-target="#modalPowerBI">
-            <div class="p-4 text-center services-content">
-              <div class="services-content-icon">
-                <img src="https://www.atptech.com/wp-content/uploads/photo_powerbi.jpg" alt="Power BI" class="img-fluid mb-4 rounded" style="height: 140px; object-fit: cover;" />
-                <h4 class="mb-2">Power BI</h4>
-                <p class="text mb-2">₹16,000 | 2 months</p>
-                <p>Create reports and dashboards using real data.</p>
+{% for modal in modals %}
+<!-- Modal -->
+<div class="modal fade" id="{{ modal.modal_id }}" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body p-4">
+        <div class="row align-items-center">
+          <!-- Left Section -->
+          <div class="col-md-6">
+            <h4 class="fw-bold mb-3">{{ modal.title }}</h4>
+            <p>{{ modal.description }}</p>
+            <div class="d-flex justify-content-between my-3">
+              <div>
+                <span class="text-warning fw-bold">⭐ {{ modal.rating }}</span>
+                <p class="mb-0 small text-muted">average course rating</p>
+              </div>
+
+              <div>
+                <span class="fw-bold">{{ modal.exercises }}</span>
+                <p class="mb-0 small text-muted">practice exercises</p>
+              </div>
+              <div>
+                <span class="fw-bold">{{ modal.duration }}</span>
+                <p class="mb-0 small text-muted">hours of content</p>
               </div>
             </div>
+            <button class="btn btn-primary fw-bold mb-2">Start subscription</button>
+            <p class="mb-0 text-muted small">👥 <strong>{{ modal.learners }} k</strong> learners already enrolled</p>
           </div>
-        </div>
 
-        <!-- Data Analytics -->
-        <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay=".7s">
-          <div class="services-item bg-light h-100" data-bs-toggle="modal" data-bs-target="#modalAnalytics">
-            <div class="p-4 text-center services-content">
-              <div class="services-content-icon">
-                <img src="https://assets.datamation.com/uploads/2023/08/dm08172023-what-is-data-analytics.png" alt="Data Analytics" class="img-fluid mb-4 rounded" style="height: 140px; object-fit: cover;" />
-                <h4 class="mb-2">Data Analytics</h4>
-                <p class="text mb-2">₹45,000 | 5 months</p>
-                <p>Master Excel, SQL, Python & Power BI tools.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Data Science & AI -->
-        <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay=".9s">
-          <div class="services-item bg-light h-100" data-bs-toggle="modal" data-bs-target="#modalAI">
-            <div class="p-4 text-center services-content">
-              <div class="services-content-icon">
-                <img src="https://btit.nz/sites/default/files/inline-images/ai%20banner%202.jpg" alt="Data Science and AI" class="img-fluid mb-4 rounded" style="height: 140px; object-fit: cover;" />
-                <h4 class="mb-2">Data Science & AI</h4>
-                <p class="text mb-2">₹65,000 | 7 months</p>
-                <p>Explore ML, AI, Python, SQL & real-world apps.</p>
-              </div>
-            </div>
+          <!-- Right Section (Image) -->
+          <div class="col-md-6">
+            <img src="{{ modal.image.url }}" alt="{{ modal.title }}" class="img-fluid rounded" />
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- Courses Styled Like Services End -->
-  <!-- Python Modal -->
-  <div class="modal fade" id="modalPython" tabindex="-1" aria-labelledby="modalPythonLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content" style="height: 400px;">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalPythonLabel">Python Programming Fundamentals</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body row overflow-auto" style="height: 500px;">
-          <div class="col-md-6">
-            <img src="https://sourcebae.com/blog/wp-content/uploads/2023/09/Top-youTube-channels-on-python-programming.jpg" alt="Python Programming" class="img-fluid rounded" />
-          </div>
-          <div class="col-md-6">
-            <p>
-              <strong>Duration:</strong> 2 months
-            </p>
-            <p>
-              <strong>Fee:</strong> ₹12,000
-            </p>
-            <p>The Python Fundamentals course is designed to provide students with a strong foundation in the Python programming language. The course covers the basics of programming in Python, including variables, data types, loops, functions, and objects. This course is suitable for individuals with no prior programming experience as well as those who wish to expand their knowledge of Python.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
+{% endfor %}
 
-  <!-- Power BI Modal -->
-  <div class="modal fade" id="modalPowerBI" tabindex="-1" aria-labelledby="modalPowerBILabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content" style="height: 400px;">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalPowerBILabel">Power BI: Foundations in Data Analysis</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body row overflow-auto" style="height: 500px;">
-          <div class="col-md-6">
-            <img src="https://www.atptech.com/wp-content/uploads/photo_powerbi.jpg" alt="Power BI" class="img-fluid rounded" />
-          </div>
-          <div class="col-md-6">
-            <p>
-              <strong>Duration:</strong> 2 months
-            </p>
-            <p>
-              <strong>Fee:</strong> ₹16,000
-            </p>
-            <p>The Power BI Level 1 course introduces participants to the foundational principles of data analysis and business intelligence using Power BI. This program is tailored for beginners and professionals aiming to enter the field of data analysis. You will learn how to transform raw data into meaningful insights, create stunning visualizations, and build interactive reports that enable better decision-making.</p>
-            <ul>
-              <li>Develop a foundational understanding of Power BI for data analysis.</li>
-              <li>Gain experience in importing, transforming, and modeling data from various sources.</li>
-              <li>Build interactive dashboards and visually appealing reports.</li>
-              <li>Write DAX formulas to perform data calculations and create measures.</li>
-              <li>Optimize reports and troubleshoot performance issues for seamless user experiences.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Data Analytics Modal -->
-  <div class="modal fade" id="modalAnalytics" tabindex="-1" aria-labelledby="modalAnalyticsLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content" style="height: 400px;">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalAnalyticsLabel">Data Analytics</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body row overflow-auto" style="height: 500px;">
-          <div class="col-md-6">
-            <img src="https://assets.datamation.com/uploads/2023/08/dm08172023-what-is-data-analytics.png" alt="Data Analytics" class="img-fluid rounded" />
-          </div>
-          <div class="col-md-6">
-            <p>
-              <strong>Duration:</strong> 5 months
-            </p>
-            <p>
-              <strong>Fee:</strong> ₹45,000
-            </p>
-            <p>This comprehensive course combines technical and analytical skills for data-driven decision-making:</p>
-            <ul>
-              <li>
-                <strong>Python Programming:</strong> Basic syntax, data structures (lists, tuples, dictionaries), and an introduction to NumPy and pandas.
-              </li>
-              <li>
-                <strong>Advanced Excel:</strong> Pivot tables, complex formulas, chart creation, and automation using Macros.
-              </li>
-              <li>
-                <strong>Database Management:</strong> SQL, NoSQL, MS SQL Server, PostgreSQL, and MySQL/MariaDB basics.
-              </li>
-              <li>
-                <strong>Power BI:</strong> Data connection, transformation, visualization, and dashboard creation.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Data Science & AI Modal -->
-  <div class="modal fade" id="modalAI" tabindex="-1" aria-labelledby="modalAILabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content" style="height: 400px;">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalAILabel">Data Science & AI</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body row overflow-auto" style="height: 500px;">
-          <div class="col-md-6">
-            <img src="https://btit.nz/sites/default/files/inline-images/ai%20banner%202.jpg" alt="Data Science & AI" class="img-fluid rounded" />
-          </div>
-          <div class="col-md-6">
-            <p>
-              <strong>Duration:</strong> 7 months
-            </p>
-            <p>
-              <strong>Fee:</strong> ₹65,000
-            </p>
-            <p>An advanced course tailored for aspiring Data Scientists and AI Engineers. This program includes:</p>
-            <ul>
-              <li>
-                <strong>Data Analysis & Visualization:</strong> Using Python, SQL, and Power BI.
-              </li>
-              <li>
-                <strong>Machine Learning:</strong> Algorithms, applications, and deployment.
-              </li>
-              <li>
-                <strong>AI Concepts:</strong> Natural Language Processing (NLP), Computer Vision, and automation.
-              </li>
-              <li>
-                <strong>Programming:</strong> Proficiency in Python and R.
-              </li>
-              <li>
-                <strong>Statistics & Probability:</strong> Essential foundations for ML and AI.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 {% endblock %}
