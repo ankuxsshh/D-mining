@@ -1,4 +1,4 @@
-from .models import Carousel, Course, CourseModal, Testimonial, ContactInfo
+from .models import Carousel, Course, CourseModal, Testimonial, ContactInfo, GalleryImage
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.conf import settings
@@ -36,7 +36,11 @@ def courses(request):
     })
 
 def gallery(request):
-    return render(request, 'gallery.html')
+    images = GalleryImage.objects.all()
+    return render(request, 'gallery.html'
+                  , {
+                      'images': images
+                      })
 
 def contact(request):
     contact = ContactInfo.objects.first()

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Carousel, Course, CourseModal, Testimonial, ContactInfo
+from .models import Carousel, Course, CourseModal, Testimonial, ContactInfo, GalleryImage
 
 @admin.register(Carousel)
 class CarouselAdmin(admin.ModelAdmin):
@@ -12,3 +12,7 @@ class CourseAdmin(admin.ModelAdmin):
 admin.site.register(CourseModal)
 admin.site.register(Testimonial)
 admin.site.register(ContactInfo)
+
+admin.site.register(GalleryImage)
+class GalleryImageAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'uploaded_at')
