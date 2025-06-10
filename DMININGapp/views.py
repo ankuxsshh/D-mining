@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.contrib import messages
+from urllib.parse import quote
 
 def index(request):
     carousel_items = Carousel.objects.all()
@@ -48,28 +49,25 @@ def contact(request):
         'contact': contact
     })
 
-def send_contact_mail(request):
+def send_contact_whatsapp(request):
     if request.method == 'POST':
         name = request.POST.get('name')
-        email = request.POST.get('email')
-        subject = request.POST.get('subject')
+        phone = request.POST.get('phone')
+        qualification = request.POST.get('qualification')
         message = request.POST.get('message')
 
-        full_message = f"Message from {name} <{email}>:\n\n{message}"
+        full_message = f"New Contact Message :\n\nName : {name}\nPhone : {phone}\nQualification : {qualification}\n\nMessage :\n{message}"
 
-        try:
-            send_mail(
-                subject,
-                full_message,
-                settings.DEFAULT_FROM_EMAIL,
-                [settings.CONTACT_RECEIVER_EMAIL],  # your website's email
-                fail_silently=False,
-            )
-            messages.success(request, "Your message has been sent successfully.")
-        except Exception as e:
-            messages.error(request, "There was an error sending your message. Please try again later.")
+        # Replace with your WhatsApp number (include country code, no + sign)
+        whatsapp_number = '916282922334'
 
-        return redirect('contact')  # redirect back to the contact page or another page
+        # Encode the message for the URL
+        encoded_message = quote(full_message)
+
+        # WhatsApp API redirect URL
+        whatsapp_url = f"https://wa.me/{whatsapp_number}?text={encoded_message}"
+
+        return redirect(whatsapp_url)
 
 
 

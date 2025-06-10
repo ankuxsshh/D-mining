@@ -16,7 +16,7 @@ class Carousel(models.Model):
 class Course(models.Model):
     title = models.CharField(max_length=200)
     category = models.CharField(max_length=100)
-    price = models.PositiveIntegerField()
+    price = models.CharField(max_length=50)
     rating = models.IntegerField(default=5)
     iimage = models.ImageField(upload_to='static/courses/', null=True, blank=True)
     short_description = models.TextField()

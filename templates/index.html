@@ -490,21 +490,21 @@
       <!-- Contact Form -->
       <div class="col-lg-6 wow fadeIn" data-wow-delay=".5s">
         <div class="bg-white rounded shadow-sm p-5">
-          <form method="POST" action="{% url 'send_contact_mail' %}">
+          <form method="POST" action="{% url 'send_contact_whatsapp' %}">
             {% csrf_token %}
             <div class="mb-3">
               <input type="text" name="name" class="form-control py-3" placeholder="Your Name" required />
             </div>
             <div class="mb-3">
-              <input type="email" name="email" class="form-control py-3" placeholder="Your Email" required />
+              <input type="text" name="phone" class="form-control py-3" placeholder="Your Phone Number" required />
             </div>
             <div class="mb-3">
-              <input type="text" name="subject" class="form-control py-3" placeholder="Subject" required />
+              <input type="text" name="qualification" class="form-control py-3" placeholder="Qualification" required />
             </div>
             <div class="mb-3">
               <textarea name="message" class="form-control py-3" rows="5" placeholder="Message" required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary px-4 py-3">Send Message</button>
+            <button type="submit" class="btn btn-success px-4 py-3">Send message</button>
           </form>
         </div>
       </div>
